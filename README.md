@@ -2,7 +2,8 @@ AEX Websocket API 协议说明文档
 
 # API 请求 URL
 ```
-Websocket API URL: wss://api.bit.cc/ws/v1
+URL: wss://api.bit.cc/ws/v1
+
 目前Websocket API只针对api.bit.cc域名提供.
 ```
 
