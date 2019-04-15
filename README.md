@@ -2,9 +2,9 @@ AEX Websocket API 协议说明文档
 
 # API 请求 URL
 ```
-URL: wss://api.bit.cc/ws/v1
+URL: wss://api.aex.zone/ws/v1
 
-目前 Websocket API 只针对 api.bit.cc 域名提供。
+目前 Websocket API 只针对 api.aex.zone 域名提供。
 ```
 
 # 目录
@@ -330,6 +330,7 @@ xx+009 | ================ 查询成交记录错误码 ================
   }
 }
 ```
+说明：当用户的挂单成交的时候，在用户没有主动发请求查询成交记录的情况下，服务器也会使用cmd:9命令的应答结构主动通知用户成交记录。
 
 ##### CMD: 10, 查询交易对信息
 ```
