@@ -160,7 +160,7 @@ xx+009 | ================ 查询成交记录错误码 ================
   },
   "key": "xxxxxxxxx",    // 公钥
   "time": 1545727168,    // 时间戳,单位秒
-  "md5": "xxxxxxxxxxxxx" // md5
+  "md5": "xxxxxxxxxxxxx" // md5： md5(key_用戶ID_skey_time)，順序不可顛倒
 }
 
 应答结构:
