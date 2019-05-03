@@ -2,9 +2,9 @@ AEX Websocket API 协议说明文档
 
 # API 请求 URL
 ```
-URL: wss://api.aex.plus/ws/v1
+URL: wss://api.aex.zone/ws/v1
 
-目前 Websocket API 只针对 api.aex.plus 域名提供。
+目前 Websocket API 只针对 api.aex.zone 域名提供。
 ```
 
 # 目录
