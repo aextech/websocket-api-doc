@@ -20,7 +20,7 @@ URL: wss://api.aex.zone/ws/v1
 
 # API 请求 限制
 + 同一个IP最多10个Websocket连接
-+ 1个Websocket连接每秒最多10个请求
++ 1个Websocket连接每秒最多10个请求，下一秒重新对请求计数
 + 1个Websocket连接最多同时关注10个交易对
 
 # 目录
