@@ -5,7 +5,10 @@ AEX Websocket API 协议说明文档
 URL: wss://api.aex.zone/ws/v1
 
 目前 Websocket API 只针对 api.aex.zone 域名提供。
+```
 
+# Websocket 连接处理过程
+```
 同一个账号，同一时间只能有一个连接存活，后面认证成功的连接会把其他连接断开。在未认证的情况下，同一个IP允许多有个连接，
 比如：
   1）IP1 连接上websocket
@@ -14,6 +17,11 @@ URL: wss://api.aex.zone/ws/v1
   4）IP2 发起auth请求且成功
   5）IP1 上已auth成功的连接会被服务端主动断开连接
 ```
+
+# API 请求 限制
++ 同一个IP最多10个Websocket连接
++ 1个Websocket连接每秒最多10个请求
++ 1个Websocket连接最多同时关注10个交易对
 
 # 目录
 + [协议命令字](#协议命令字)
