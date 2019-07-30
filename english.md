@@ -1,5 +1,5 @@
 AEX Websocket API Protocol Documentation  
-[Chinese Document] (/aextech/websocket-api-doc)
+[Chinese Document](/README.md)
 
 # API Request URL
 ```
@@ -25,9 +25,9 @@ such as:
 + 1 Websocket connection up to 10 transaction pairs at the same time
 
 # table of Contents
-+ [protocol command word] (# protocol command word)
-+ [error code] (#error code)
-+ [protocol request/response data structure (json)] (#protocol request response data structure)
++ [protocol command word](# Protocol Command Type)
++ [error code](#error code)
++ [protocol request/response data structure (json)](#protocol request response data structure)
    + [CMD: 1, deep change notification, server proactively notify the client] (#cmd-1-depth change notification - server proactively notify the client)
    + [CMD: 2, Focus on trading pairs (maximum of 10)] (#cmd-2-Following deals for up to 10)
    + [CMD: 4, Signature Authentication] (#cmd-4-Signature Certification)
