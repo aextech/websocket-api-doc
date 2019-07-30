@@ -25,20 +25,20 @@ such as:
 + 1 Websocket connection up to 10 transaction pairs at the same time
 
 # table of Contents
-+ [protocol command type](#protocol-command-type)
-+ [error code](#error-code)
-+ [protocol request/response data structure (json)](#protocol-request-response-data-structure)
-   + [CMD: 1, deep change notification, server proactively notify the client](#cmd-1-depth-change-notification-the-server-actively-notifies-the-client)
++ [Protocol Command Type](#protocol-command-type)
++ [Error Code](#error-code)
++ [Protocol request/response data structure (json)](#protocol-request-response-data-structure)
+   + [CMD: 1, Deep change notification, server proactively notify the client](#cmd-1-depth-change-notification-the-server-actively-notifies-the-client)
    + [CMD: 2, Focus on trading pairs (maximum of 10)](#cmd-2-focus-on-trading-pairs-maximum-of-10)
    + [CMD: 4, Signature Authentication](#cmd-4-signature-certification)
    + [CMD: 5, Get Balance](#cmd-5-get-the-balance)
-   + [CMD: 6, pending order](#cmd-6-pending-order)
-   + [CMD: 7, Withdrawal](#cmd-7-withdrawal)
-   + [CMD: 8, query order information according to order ID](#cmd-8-query-order-information-based-on-order-id)
-   + [CMD: 9, check the transaction record according to the transaction record ID](#cmd-9-check-the-transaction-record-according-to-the-transaction-record-id)
+   + [CMD: 6, Pending order](#cmd-6-pending-order)
+   + [CMD: 7, Withdraw](#cmd-7-withdrawal)
+   + [CMD: 8, Query order information according to order ID](#cmd-8-query-order-information-based-on-order-id)
+   + [CMD: 9, Check the transaction record according to the transaction record ID](#cmd-9-check-the-transaction-record-according-to-the-transaction-record-id)
    + [CMD: 10, Query Transaction Information](#cmd-10-query-transaction-information)
-   + [CMD: 11, query order based on tag](#cmd-11-query-the-order-according-to-the-tag)
-   + [CMD: 12, check the transaction record according to the tag](#cmd-12-query-the-transaction-record-according-to-the-tag)
+   + [CMD: 11, Query order based on tag](#cmd-11-query-the-order-according-to-the-tag)
+   + [CMD: 12, Check the transaction record according to the tag](#cmd-12-query-the-transaction-record-according-to-the-tag)
    + [CMD: 13, Query Valid Transaction Pair List](#cmd-13-query-the-list-of-valid-transactions)
    + [CMD: 14, Query the transaction record of the specified transaction pair](#cmd-14-query-the-transaction-record-of-the-specified-transaction-pair)
    + [CMD: 15, Query the market data of the specified transaction pair or the specified market](#cmd-15-query-the-market-data-of-the-specified-transaction-pair-or-the-specified-market)
@@ -66,7 +66,7 @@ CMD | Description
 15 | Query market data for a specified trade pair or specified market
 
 
-# error code
+# Error Code
 Error code | Description
 ----- | ---------
 0 | normal
@@ -111,7 +111,7 @@ Xx+009 | ================ Query the transaction record error code ==============
 
 
 # Protocol request response data structure
-##### CMD: 1, depth change notification, the server actively notifies the client
+##### CMD: 1, Depth change notification, the server actively notifies the client
 ```
 Request structure:
 no
@@ -223,7 +223,7 @@ Response structure:
 }
 ```
 
-##### CMD: 6, pending order
+##### CMD: 6, Pending order
 ```
 Request structure:
 {
@@ -272,12 +272,12 @@ Response structure:
 }
 ```
 
-##### CMD: 7, Withdrawal
+##### CMD: 7, Withdraw
 ```
 Request structure:
 {
   "cmd": {
-    "type": 7 // Withdrawal
+    "type": 7 // Withdraw
   },
   "market": "gat", // trading area, pricing currency
   "coin": "bkbt", // trading currency
@@ -296,7 +296,7 @@ Response structure:
 }
 ```
 
-##### CMD: 8, query order information based on order ID
+##### CMD: 8, Query order information based on order ID
 ```
 Request structure:
 {
@@ -327,7 +327,7 @@ Response structure:
 }
 ```
 
-##### CMD: 9, check the transaction record according to the transaction record ID
+##### CMD: 9, Check the transaction record according to the transaction record ID
 ```
 Request structure:
 {
@@ -409,7 +409,7 @@ Response structure:
 }
 ```
 
-##### CMD: 11, query the order according to the tag
+##### CMD: 11, Query the order according to the tag
 ```
 Request structure:
 {
@@ -441,7 +441,7 @@ Response structure:
 }
 ```
 
-##### CMD: 12, query the transaction record according to the tag
+##### CMD: 12, Query the transaction record according to the tag
 ```
 Request structure:
 {
