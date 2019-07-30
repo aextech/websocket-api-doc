@@ -28,8 +28,8 @@ such as:
 + [Protocol Command Type](#protocol-command-type)
 + [Error Code](#error-code)
 + [Protocol request/response structure (json)](#protocol-request-response-data-structure)
-   + [CMD: 1, Order book change notification, server proactively notify the client](#cmd-1-depth-change-notification-the-server-actively-notifies-the-client)
-   + [CMD: 2, Watch/unwatch specified market pairs (maximum of 10)](#cmd-2-focus-on-trading-pairs-maximum-of-10)
+   + [CMD: 1, Order book notification](#cmd-1-depth-change-notification-the-server-actively-notifies-the-client)
+   + [CMD: 2, Watch/unwatch specified market pairs](#cmd-2-watchunwath-market-pairs-maximum-of-10)
    + [CMD: 4, Authentication](#cmd-4-authentication)
    + [CMD: 5, Get Balance](#cmd-5-get-balance)
    + [CMD: 6, Pending order](#cmd-6-pending-order)
@@ -111,7 +111,7 @@ Xx+009 | ================ Query the transaction record error code ==============
 
 
 # Protocol request response data structure
-##### CMD: 1, Order book change notification, the server actively notifies the client
+##### CMD: 1, Order book notification, the server actively notifies the client
 ```
 Request structure:
 no
