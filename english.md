@@ -24,25 +24,25 @@ such as:
 + 1 Websocket connection up to 10 requests per second, recounting requests in the next second
 + 1 Websocket connection up to 10 transaction pairs at the same time
 
-# table of Contents
+# Table of Contents
 + [Protocol Command Type](#protocol-command-type)
 + [Error Code](#error-code)
-+ [Protocol request/response data structure (json)](#protocol-request-response-data-structure)
-   + [CMD: 1, Deep change notification, server proactively notify the client](#cmd-1-depth-change-notification-the-server-actively-notifies-the-client)
-   + [CMD: 2, Focus on trading pairs (maximum of 10)](#cmd-2-focus-on-trading-pairs-maximum-of-10)
-   + [CMD: 4, Signature Authentication](#cmd-4-signature-certification)
++ [Protocol request/response structure (json)](#protocol-request-response-data-structure)
+   + [CMD: 1, Order book change notification, server proactively notify the client](#cmd-1-depth-change-notification-the-server-actively-notifies-the-client)
+   + [CMD: 2, Focus on specified market pairs (maximum of 10)](#cmd-2-focus-on-trading-pairs-maximum-of-10)
+   + [CMD: 4, Authentication](#cmd-4-signature-certification)
    + [CMD: 5, Get Balance](#cmd-5-get-the-balance)
    + [CMD: 6, Pending order](#cmd-6-pending-order)
    + [CMD: 7, Withdraw](#cmd-7-withdrawal)
-   + [CMD: 8, Query order information according to order ID](#cmd-8-query-order-information-based-on-order-id)
-   + [CMD: 9, Check the transaction record according to the transaction record ID](#cmd-9-check-the-transaction-record-according-to-the-transaction-record-id)
-   + [CMD: 10, Query Transaction Information](#cmd-10-query-transaction-information)
-   + [CMD: 11, Query order based on tag](#cmd-11-query-the-order-according-to-the-tag)
-   + [CMD: 12, Check the transaction record according to the tag](#cmd-12-query-the-transaction-record-according-to-the-tag)
-   + [CMD: 13, Query Valid Transaction Pair List](#cmd-13-query-the-list-of-valid-transactions)
-   + [CMD: 14, Query the transaction record of the specified transaction pair](#cmd-14-query-the-transaction-record-of-the-specified-transaction-pair)
-   + [CMD: 15, Query the market data of the specified transaction pair or the specified market](#cmd-15-query-the-market-data-of-the-specified-transaction-pair-or-the-specified-market)
-+ [Association of order and transaction record](#association-of-order-and-transaction-records)
+   + [CMD: 8, Query order according to the order ID](#cmd-8-query-order-information-based-on-order-id)
+   + [CMD: 9, Query trade according to the trade ID](#cmd-9-check-the-transaction-record-according-to-the-transaction-record-id)
+   + [CMD: 10, Query market pair meta data](#cmd-10-query-transaction-information)
+   + [CMD: 11, Query orders according to the order tag](#cmd-11-query-the-order-according-to-the-tag)
+   + [CMD: 12, Query trades according to the order tag](#cmd-12-query-the-transaction-record-according-to-the-tag)
+   + [CMD: 13, Query valid market pair list](#cmd-13-query-the-list-of-valid-transactions)
+   + [CMD: 14, Query public trades of the specified market pair](#cmd-14-query-the-transaction-record-of-the-specified-transaction-pair)
+   + [CMD: 15, Query ticker of the specified market pair](#cmd-15-query-the-market-data-of-the-specified-transaction-pair-or-the-specified-market)
++ [Link orders and trades through tags](#association-of-order-and-transaction-records)
 + [Implementation of trading strategy](#implementation-of-trading-strategy)
 
 
@@ -296,7 +296,7 @@ Response structure:
 }
 ```
 
-##### CMD: 8, Query order information based on order ID
+##### CMD: 8, Query order according to the order ID
 ```
 Request structure:
 {
@@ -327,7 +327,7 @@ Response structure:
 }
 ```
 
-##### CMD: 9, Check the transaction record according to the transaction record ID
+##### CMD: 9, Query trade according to the trade ID
 ```
 Request structure:
 {
@@ -360,7 +360,7 @@ Response structure:
 ```
 Note: When the user's pending order is filled, if the user does not actively request to query the transaction record, the server will use the response structure of the cmd:9 command to actively notify the user of the transaction record.
 
-##### CMD: 10, Query transaction information
+##### CMD: 10, Query market pair meta data
 ```
 Request structure:
 {
@@ -409,7 +409,7 @@ Response structure:
 }
 ```
 
-##### CMD: 11, Query the order according to the tag
+##### CMD: 11, Query orders according to the order tag
 ```
 Request structure:
 {
@@ -441,7 +441,7 @@ Response structure:
 }
 ```
 
-##### CMD: 12, Query the transaction record according to the tag
+##### CMD: 12, Query trades according to the order tag
 ```
 Request structure:
 {
@@ -474,7 +474,7 @@ Response structure:
 }
 ```
 
-##### CMD: 13, Query the list of valid transactions
+##### CMD: 13, Query valid market pair list
 ```
 Request structure:
 {
@@ -502,7 +502,7 @@ Response structure:
 }
 ```
 
-##### CMD: 14, Query the transaction record of the specified transaction pair
+##### CMD: 14, Query public trades of the specified market pair
 ```
 Request structure:
 {
@@ -538,7 +538,7 @@ Response structure:
 }
 ```
 
-##### CMD: 15, Query the market data of the specified transaction pair or the specified market
+##### CMD: 15, Query ticker of the specified market pair
 ```
 Request structure:
 {
@@ -574,7 +574,7 @@ Response structure:
 }
 ```
 
-# Association of order and transaction records
+# Link orders and trades through tags
 + In the current Aex RESTful interface, there is no correlation between orders and transaction records, which makes it difficult to analyze the status of pending orders and transactions, and also increases the difficulty of implementing trading strategies.
 + The problem of lack of association between order and transaction record in RESTful api is solved by the tag in the pending order in the websocket api. The order and the result of the transaction formed by the same pending order will record the tag in the pending order, so the order and the transaction record can be Associated by tags.
 
