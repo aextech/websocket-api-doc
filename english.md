@@ -111,7 +111,7 @@ Xx+009 | ================ Query the transaction record error code ==============
 
 
 # Protocol request response data structure
-##### CMD: 1, Depth change notification, the server actively notifies the client
+##### CMD: 1, Order book change notification, the server actively notifies the client
 ```
 Request structure:
 no
@@ -119,17 +119,17 @@ no
 Response structure:
 {
   "cmd": {
-    "type": 1, // command type is 1
-    "eno": 0 // error code always returns 0
+    "type": 1,     // command type 1 means server sent whole order book to client when order book changed
+    "eno": 0       // error code always returns 0
   },
-  "market": "cnc", // trading area, pricing currency
-  "coin": "btc", // trading currency
-  "bids": [ // buy order depth
+  "market": "cnc", // market currency is cnc
+  "coin": "btc",   // trading currency is btc
+  "bids": [        // buy order book
     {"price": 32076, "amount": 742.799405},
     {"price": 32000, "amount": 79253.604638},
     ...
   ],
-  "asks": [// Sell order depth
+  "asks": [        // sell order book
     {"price": 32077, "amount": 1},
     {"price": 32153, "amount": 2},
     ...
@@ -137,36 +137,36 @@ Response structure:
 }
 ```
 
-##### CMD: 2, Focus on trading pairs (maximum of 10)
+##### CMD: 2, Watch/Unwath market pairs (maximum of 10)
 ```
 Request structure:
 {
   "cmd": {
-    "type": 2 // follow the deal pair
+    "type": 2         // watch/unwatch the specified market pair
   },
-  "type": 1, // type of concern: 1=add the transaction pair of interest, 2=delete the transaction pair of interest
-  "pairs": [{ // Prepare a list of trading pairs to focus on (more than 1)
-    "market": "cnc",
-    "coin": "btc"
+  "type": 1,          // 1=watch the market pair, 2=unwatch the market pair
+  "pairs": [{         // market pairs list to follow/unfollow
+    "market": "cnc",  // market currency
+    "coin": "btc"     // trading currency
   }, {
-    "market": "cnc",
-    "coin": "eos"
+    "market": "cnc",  // market currency
+    "coin": "eos"     // trading currency
   }]
 }
 
 Response structure:
 {
   "cmd": {
-    "type": 2, // follow the deal pair
-    "eno": 0 // error code
+    "type": 2,        // follow/unfollow the market pair
+    "eno": 0          // error code, after watch successfully, order book change will be sent to client
   },
-  "type": 1, // type of concern: 1=add the transaction pair of interest, 2=delete the transaction pair of interest
-  "pairs": [{ // type=1 is a list of successful transaction pairs (can be empty), type=2 is an array of successful transaction pairs (can be empty)
-    "market": "cnc",
-    "coin": "btc"
+  "type": 1,          // 1=watch, 2=unwatch
+  "pairs": [{
+    "market": "cnc",  // market currency
+    "coin": "btc"     // trading currency
   }, {
-    "market": "cnc",
-    "coin": "eos"
+    "market": "cnc",  // market currency
+    "coin": "eos"     // trading currency
   }]
 }
 ```
@@ -176,18 +176,18 @@ Response structure:
 Request structure:
 {
   "cmd": {
-    "type": 4 // Signature authentication
+    "type": 4 // authentication
   },
-  "key": "xxxxxxxxx", // public key
-  "time": 1545727168, // timestamp, in seconds
-  "md5": "xxxxxxxxxxxxx" // md5: md5 (key_user ID_skey_time), the order cannot be reversed
+  "key": "xxxxxxxxx",    // public key, obtained from "https://www.aex.plus/page/api_detailed.html"
+  "time": 1545727168,    // timestamp, in seconds
+  "md5": "xxxxxxxxxxxxx" // md5: md5("{key}_{userID}_{skey}_{time}")
 }
 
 Response structure:
 {
   "cmd": {
-    "type": 4, // signature authentication
-    "eno": 0 // error code
+    "type": 4, // authentication
+    "eno": 0   // error code
   }
 }
 ```
@@ -197,28 +197,28 @@ Response structure:
 Request structure:
 {
   "cmd": {
-    "type": 5 // Get the balance
+    "type": 5 // get balance
   }
 }
 
 Response structure:
 {
   "cmd": {
-    "type": 5, // get the balance
-    "eno": 0 // ENO_*
+    "type": 5, // get balance
+    "eno": 0   // error code
   },
-  "balances": [{ // balance array
-    "coin": "bkbt", // coin name
-    "val": 116.99, // balance
-    "locked": 0 // Freeze funds
+  "balances": [{ 
+    "coin": "bkbt",  // currency name
+    "val": 116.99,   // available balance
+    "locked": 0      // freeze funds
   }, {
-    "coin": "blk", // currency name
-    "val": 0.180533, // balance
-    "locked": 0 // Freeze funds
+    "coin": "blk",   // currency name
+    "val": 0.180533, // available balance
+    "locked": 0      // freeze funds
   }, {
-    "coin": "btc", // currency name
-    "val": 0, // balance
-    "locked": 0 // Freeze funds
+    "coin": "btc",   // currency name
+    "val": 0,        // balance
+    "locked": 0      // freeze funds
   }]
 }
 ```
@@ -228,14 +228,14 @@ Response structure:
 Request structure:
 {
   "cmd": {
-    "type": 6 // pending order
+    "type": 6       // pending order
   },
-  "market": "gat", // trading area, pricing currency
-  "coin": "bkbt", // trading currency
-  "tag": 2, // user-defined tag, a non-negative integer used to associate the order with the transaction record
-  "type": 1, // pending order type: 1=pay, 2=sell order
-  "price": 12.5, // price
-  "amount": 20 // quantity
+  "market": "gat",  // market currency
+  "coin": "bkbt",   // trading currency
+  "tag": 2,         // user-defined tag, a non-negative integer used to associate the order with the trade
+  "type": 1,        // pending order type: 1=bid, 2=ask
+  "price": 12.5,    // price
+  "amount": 20      // quantity
 }
 
 Response structure:
