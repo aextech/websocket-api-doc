@@ -1,4 +1,5 @@
-AEX Websocket API Protocol Documentation
+AEX Websocket API Protocol Documentation  
+[Chinese Document] (/aextech/websocket-api-doc)
 
 # API Request URL
 ```
