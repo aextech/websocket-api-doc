@@ -171,7 +171,7 @@ Response structure:
 }
 ```
 
-##### CMD: 4, Signature Certification
+##### CMD: 4, Authentication
 ```
 Request structure:
 {
@@ -192,7 +192,7 @@ Response structure:
 }
 ```
 
-##### CMD: 5, Get the balance
+##### CMD: 5, Get Balance
 ```
 Request structure:
 {
