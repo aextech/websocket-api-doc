@@ -1,4 +1,5 @@
-AEX Websocket API 协议说明文档    
+AEX Websocket API 协议说明文档   
+[英文文档](/english.md)
 
 # API 请求 URL
 ```
