@@ -107,7 +107,8 @@ Xx+008 | ================ Query order error code ================
 1008 | Order does not exist
 Xx+009 | ================ Query the transaction record error code ================
 1009 | Transaction record does not exist
-
+10080 | transaction uses V1 version
+10081 | transaction uses V2 version
 
 
 # Protocol request response data structure
