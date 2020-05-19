@@ -255,6 +255,7 @@ Response structure:
     "price": 10.5, // transaction price
     "amount": 57, // the number of deals
     "fee": 0 // handling fee, type=1 is the handling fee, in transaction currency, income = amount-fee; type=2 is the selling fee, in pricing currency, income = price* Amount-fee
+    "self":0 //1 is self purchase and self sale 0 no
   }
 }
 {
@@ -357,6 +358,7 @@ Response structure:
     "amount": 57, // the number of deals
     "fee": 0 // handling fee, type=1 is the handling fee, in transaction currency, income = amount-fee; type=2 is the selling fee, in pricing currency, income = price* Amount-fee
     "time": 1547627993 // transaction time, time stamp, unit seconds
+    "self":0 //1 is self purchase and self sale 0 no
   }
 }
 ```
@@ -472,6 +474,7 @@ Response structure:
     "amount": 10, // the number of deals
     "fee": 0, // // handling fee, type=1 is the handling fee, in transaction currency, income = amount-fee; type=2 is the selling fee, in terms of pricing currency, income =price*amount-fee
     "time": 1547627993 // transaction time, time stamp, unit seconds
+    "self":0 //1 is self purchase and self sale 0 no
   }]
 }
 ```
@@ -583,3 +586,4 @@ Response structure:
 
 # Implementation of trading strategy
 Since the tag in the pending request in the websocket api is completely user-defined, as long as tag > 0, the user can encode the tag to implement a certain custom trading strategy.
+
