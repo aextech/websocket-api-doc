@@ -1,5 +1,5 @@
 AEX Websocket API Protocol Documentation  
-[Chinese Document](/README.md)
+[中文文档](/README.md)
 
 # API Request URL
 ```
